@@ -1,165 +1,207 @@
-body {
-  margin: 0;
-  background: #0d0e16;
-  color: white;
-  font-family: Arial, sans-serif;
-  display: flex;
+```css
+/* ===== RESET ===== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-aside {
-  width: 290px;
-  height: 100vh;
-  background: #10111b;
-  padding: 25px;
-  border-right: 1px solid #242638;
+body{
+    display:flex;
+    background:#0a0b16;
+    color:#fff;
+    min-height:100vh;
 }
 
-aside h1 {
-  color: #7b4dff;
-  font-size: 28px;
+/* ===== SIDEBAR ===== */
+aside{
+    width:280px;
+    background:#11111d;
+    border-right:1px solid #27283d;
+    padding:20px;
 }
 
-aside p {
-  color: #777;
-  letter-spacing: 4px;
-  font-size: 12px;
-  margin-top: 30px;
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:30px;
 }
 
-aside a {
-  display: block;
-  padding: 14px;
-  color: #b8bad0;
+.brand-logo{
+    width:70px;
+    height:70px;
 }
 
-aside .active,
-aside a:hover {
-  background: linear-gradient(90deg, #2a2d46, #12131f);
-  color: white;
-  border-left: 3px solid white;
+.brand-text span,
+.brand-text strong{
+    display:block;
+    color:#9b4cff;
+    font-weight:bold;
+    font-size:24px;
 }
 
-main {
-  flex: 1;
+aside p{
+    color:#7d7d90;
+    letter-spacing:4px;
+    margin:20px 0 10px;
+    font-size:12px;
 }
 
-header {
-  height: 70px;
-  background: #11121b;
-  border-bottom: 1px solid #242638;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px;
+aside a{
+    display:block;
+    color:#d7d7e5;
+    text-decoration:none;
+    padding:12px 15px;
+    border-radius:8px;
+    margin-bottom:5px;
 }
 
-button {
-  background: #7657ff;
-  color: white;
-  border: 0;
-  padding: 14px 22px;
-  border-radius: 9px;
-  font-weight: bold;
+aside a.active,
+aside a:hover{
+    background:#20213b;
+    border-left:3px solid white;
 }
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-  padding: 25px;
+/* ===== MAIN ===== */
+
+main{
+    flex:1;
+    width:100%;
+    min-height:100vh;
+    padding:20px;
 }
 
-.cards div {
-  background: linear-gradient(135deg, #251b2a, #181a2b);
-  border: 1px solid #2c3046;
-  border-radius: 8px;
-  padding: 25px;
+/* ===== HEADER ===== */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
 }
 
-.cards h3 {
-  font-size: 36px;
-  text-align: right;
+button{
+    background:#8b5cf6;
+    color:white;
+    border:none;
+    padding:14px 25px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-.cards span {
-  color: #d8d9e8;
+/* ===== STATS ===== */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    width:100%;
+    margin-bottom:20px;
 }
 
-.news {
-  margin: 0 25px 18px;
-  display: grid;
-  grid-template-columns: 38% 62%;
-  background: #171929;
-  border: 1px solid #272b43;
-  border-radius: 10px;
-  overflow: hidden;
+.cards div{
+    background:#1a1930;
+    border:1px solid #323456;
+    border-radius:10px;
+    padding:35px;
+    text-align:center;
 }
 
-.img {
-  background: linear-gradient(135deg, #1c1632, #7c32d9);
-  display: grid;
-  place-items: center;
-  font-size: 38px;
-  font-weight: 900;
-  color: #e4d8ff;
+.cards h3{
+    font-size:55px;
+    margin-bottom:20px;
 }
 
-.logo {
-  font-size: 80px;
+.cards span{
+    font-size:18px;
 }
 
-.text {
-  padding: 35px;
-  background: linear-gradient(90deg, #222842, #171929);
+/* ===== NEWS ===== */
+
+.news{
+    display:grid;
+    grid-template-columns:35% 65%;
+    width:100%;
+    margin-bottom:20px;
+    border-radius:10px;
+    overflow:hidden;
+    background:#1b1d33;
+    border:1px solid #2d2f4b;
 }
 
-.text b {
-  background: #491c2b;
-  color: #ff5572;
-  padding: 7px 12px;
-  border-radius: 4px;
-  font-size: 12px;
+.img{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:65px;
+    font-weight:bold;
+    background:#5d1eb5;
+    color:white;
 }
 
-.text p {
-  color: #ddd;
+.img.logo{
+    font-size:90px;
 }
 
-.text span {
-  color: #91a8ff;
+.text{
+    padding:30px;
 }
 
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
+.text b{
+    background:#802d3c;
+    color:#ff8080;
+    padding:6px 12px;
+    border-radius:5px;
+    font-size:12px;
 }
 
-.logo {
-    width: 70px;
-    height: auto;
+.text h2{
+    margin:15px 0;
+    font-size:42px;
 }
 
-.logo-text h1,
-.logo-text h2 {
-    margin: 0;
-    color: white;
+.text p{
+    color:#ddd;
+    line-height:1.6;
+    font-size:20px;
 }
 
-.logo-text h1 {
-    font-size: 28px;
+.text span{
+    display:block;
+    margin-top:20px;
+    color:#8ca3ff;
 }
 
-.logo-text h2 {
-    font-size: 22px;
-    color: #b36cff;
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:1200px){
+
+.cards{
+grid-template-columns:repeat(2,1fr);
 }
 
-<div class="brand">
-  <img src="SundayRomania.png" alt="Sunday Romania" class="brand-logo">
-  <div class="brand-text">
-    <span>SUNDAY</span>
-    <strong>ROMANIA</strong>
-  </div>
-</div>
+.news{
+grid-template-columns:1fr;
+}
+
+aside{
+display:none;
+}
+
+main{
+width:100%;
+}
+
+}
+
+@media(max-width:700px){
+
+.cards{
+grid-template-columns:1fr;
+}
+
+}
+```
