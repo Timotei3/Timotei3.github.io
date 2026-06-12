@@ -155,3 +155,11 @@ button {
     font-size: 22px;
     color: #b36cff;
 }
+
+<div class="brand">
+  <img src="SundayRomania.png" alt="Sunday Romania" class="brand-logo">
+  <div class="brand-text">
+    <span>SUNDAY</span>
+    <strong>ROMANIA</strong>
+  </div>
+</div>
