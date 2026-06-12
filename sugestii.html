@@ -1,167 +1,108 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sugestii - Sunday Romania</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sugestii - Sunday Romania</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <aside>
+    <div class="brand">
+      <img src="SundayRomania.png" class="brand-logo" alt="Sunday Romania">
+      <div class="brand-text">
+        <span>SUNDAY</span>
+        <strong>ROMANIA</strong>
+      </div>
+    </div>
 
-    <!-- SIDEBAR -->
-    <aside>
+    <p>GENERAL</p>
+    <a href="index.html">Dashboard</a>
+    <a href="regulament.html">Regulament</a>
+    <a href="magazin.html">Magazin</a>
+    <a href="sugestii.html" class="active">Sugestii</a>
+    <a href="players.html">Players</a>
+    <a href="staff.html">Staff Members</a>
+    <a href="banati.html">Jucători Banați</a>
+    <a href="harta.html">Hartă</a>
 
-        <div class="brand">
-            <img src="SundayRomania.png" class="brand-logo">
-            <div class="brand-text">
-                <span>SUNDAY</span>
-                <strong>ROMANIA</strong>
-            </div>
+    <p>FACȚIUNI</p>
+    <a href="factiuni.html">Facțiuni</a>
+  </aside>
+
+  <main>
+    <header>
+      <h2>Sugestii</h2>
+      <a class="discord-btn" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">
+        Login cu Discord
+      </a>
+    </header>
+
+    <section class="news">
+      <div class="img">ANONIM</div>
+
+      <div class="text">
+        <b>SUGESTII</b>
+        <h2>Trimite o sugestie anonimă</h2>
+
+        <p>
+          Scrie mai jos sugestia ta pentru Sunday Romania.
+          Mesajul va fi trimis anonim în canalul de sugestii.
+        </p>
+
+        <div class="suggestion-container">
+          <textarea
+            id="suggestionText"
+            class="suggestion-input"
+            placeholder="Scrie aici sugestia ta..."
+          ></textarea>
+
+          <button class="send-btn" onclick="sendSuggestion()">
+            Trimite sugestia
+          </button>
+
+          <p id="statusMessage"></p>
         </div>
+      </div>
+    </section>
+  </main>
 
-        <p>GENERAL</p>
+  <script>
+    async function sendSuggestion() {
+      const text = document.getElementById("suggestionText").value.trim();
+      const status = document.getElementById("statusMessage");
 
-        <a href="index.html">Dashboard</a>
-        <a href="regulament.html">Regulament</a>
-        <a href="magazin.html">Magazin</a>
-        <a href="sugestii.html" class="active">Sugestii</a>
-        <a href="players.html">Players</a>
-        <a href="staff.html">Staff Members</a>
-        <a href="banati.html">Jucători Banați</a>
-        <a href="harta.html">Hartă</a>
-
-        <p>FACȚIUNI</p>
-
-        <a href="factiuni.html">Facțiuni</a>
-
-    </aside>
-
-    <!-- CONTENT -->
-    <main>
-
-        <header>
-            <h2>Sugestii</h2>
-
-            <a class="discord-btn"
-               href="https://discord.gg/Z9EnZnHhjQ"
-               target="_blank">
-               Login cu Discord
-            </a>
-        </header>
-
-        <section class="news">
-
-            <div class="img">
-                SUGESTII
-            </div>
-
-            <div class="text">
-
-                <b>ANONIM</b>
-
-                <h2>Trimite o sugestie pentru server</h2>
-
-                <p>
-                    Ai o idee nouă pentru Sunday Romania?
-                    Scrie sugestia ta mai jos și apasă pe
-                    <strong>Trimite sugestia</strong>.
-                </p>
-
-                <div class="suggestion-container">
-
-                    <textarea
-                        id="suggestionText"
-                        class="suggestion-input"
-                        placeholder="Scrie aici sugestia ta pentru Sunday Romania..."
-                    ></textarea>
-
-                    <br><br>
-
-                    <button class="send-btn"
-                        onclick="sendSuggestion()">
-                        Trimite sugestia
-                    </button>
-
-                    <p id="statusMessage"></p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-<script>
-async function sendSuggestion(){
-
-    const text =
-        document.getElementById("suggestionText").value;
-
-    const status =
-        document.getElementById("statusMessage");
-
-    if(text.trim()===""){
-        status.innerHTML="⚠️ Introdu o sugestie.";
+      if (!text) {
+        status.innerText = "Scrie o sugestie înainte să trimiți.";
         return;
-    }
+      }
 
-    status.innerHTML="⏳ Se trimite...";
+      status.innerText = "Se trimite...";
 
-    try{
-
-        await fetch("https://discord.com/api/webhooks/ID/TOKEN", {
-
-            method:"POST",
-
-            headers:{
-                "Content-Type":"application/json"
-            },
-
-            body:JSON.stringify({
-
-                username:"Sugestie Anonimă",
-
-                content:
-                "💡 **Sugestie nouă**\n\n"+
-                text
-
-            })
-
+      try {
+        const response = await fetch("WEBHOOK_DISCORD_AICI", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            username: "Sugestie Anonimă",
+            content: "💡 **Sugestie anonimă nouă:**\n\n" + text
+          })
         });
 
-        status.innerHTML="✅ Sugestia a fost trimisă cu succes!";
+        if (!response.ok) {
+          throw new Error("Webhook invalid sau mesaj blocat.");
+        }
 
-        document.getElementById("suggestionText").value="";
+        status.innerText = "Sugestia a fost trimisă cu succes!";
+        document.getElementById("suggestionText").value = "";
 
-    }catch{
-
-        status.innerHTML="❌ A apărut o eroare.";
-
+      } catch (error) {
+        status.innerText = "Eroare: verifică webhook-ul Discord.";
+      }
     }
-
-}
-</script>
-
+  </script>
 </body>
 </html>
-
-<script>
-async function sendSuggestion() {
-
-    const text = document.getElementById("suggestionText").value;
-
-    await fetch("https://discord.com/api/webhooks/ID/TOKEN", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            username: "Sugestie Anonimă",
-            content: "💡 Sugestie nouă:\n\n" + text
-        })
-    });
-
-}
-</script>
