@@ -129,15 +129,29 @@ button {
   color: #91a8ff;
 }
 
-.main-logo {
-  width: 70px;
-  height: auto;
-  vertical-align: middle;
-  margin-right: 10px;
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
 }
 
-aside h1 {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.logo {
+    width: 70px;
+    height: auto;
+}
+
+.logo-text h1,
+.logo-text h2 {
+    margin: 0;
+    color: white;
+}
+
+.logo-text h1 {
+    font-size: 28px;
+}
+
+.logo-text h2 {
+    font-size: 22px;
+    color: #b36cff;
 }
