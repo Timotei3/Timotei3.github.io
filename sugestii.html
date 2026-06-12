@@ -146,3 +146,22 @@ async function sendSuggestion(){
 
 </body>
 </html>
+
+<script>
+async function sendSuggestion() {
+
+    const text = document.getElementById("suggestionText").value;
+
+    await fetch("https://discord.com/api/webhooks/ID/TOKEN", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            username: "Sugestie Anonimă",
+            content: "💡 Sugestie nouă:\n\n" + text
+        })
+    });
+
+}
+</script>
