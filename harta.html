@@ -25,12 +25,14 @@ body{
     height:100vh;
 }
 
-/* SIDEBAR */
+/* ===== SIDEBAR CA IN INDEX.HTML ===== */
 .sidebar{
     width:305px;
+    min-width:305px;
     background:#100d1c;
     padding:20px 14px;
     height:100vh;
+    overflow-y:auto;
 }
 
 .logo{
@@ -82,7 +84,7 @@ body{
     border-left:4px solid #fff;
 }
 
-/* CONTENT */
+/* ===== CONTENT ===== */
 .content{
     flex:1;
     position:relative;
@@ -102,6 +104,16 @@ body{
     position:relative;
 }
 
+.topbar b{
+    font-size:16px;
+    letter-spacing:1px;
+}
+
+.controls{
+    display:flex;
+    gap:8px;
+}
+
 .controls button{
     background:#111827;
     color:white;
@@ -117,7 +129,7 @@ body{
     background:#7c3aed;
 }
 
-/* MAP */
+/* ===== MAP ===== */
 #mapView{
     width:100%;
     height:calc(100vh - 56px);
@@ -149,7 +161,7 @@ body{
     pointer-events:none;
 }
 
-/* TURFS */
+/* ===== TURFURI ===== */
 .turf{
     position:absolute;
     border:5px solid #22c55e;
@@ -158,24 +170,27 @@ body{
     z-index:20;
     box-shadow:0 0 20px #22c55e;
     cursor:pointer;
+    transition:.15s;
 }
 
 .turf:hover{
     background:rgba(34,197,94,.35);
+    transform:scale(1.02);
 }
 
 .turfInfo{
     display:none;
     position:absolute;
-    top:-85px;
+    top:-92px;
     left:0;
     background:#080812;
     border:1px solid #333;
     border-radius:10px;
     padding:10px;
-    min-width:200px;
+    min-width:220px;
     font-size:17px;
     z-index:99;
+    box-shadow:0 0 18px rgba(0,0,0,.6);
 }
 
 .turf:hover .turfInfo{
@@ -187,7 +202,7 @@ body{
     font-weight:bold;
 }
 
-/* LEGEND */
+/* ===== LEGEND ===== */
 .legend{
     position:absolute;
     right:25px;
@@ -202,6 +217,7 @@ body{
 
 .legend h2{
     margin-bottom:15px;
+    font-size:22px;
 }
 
 .legendItem{
@@ -215,6 +231,7 @@ body{
     height:27px;
     border-radius:5px;
     border:2px solid;
+    flex-shrink:0;
 }
 
 .red{
@@ -239,7 +256,7 @@ body{
     z-index:80;
 }
 
-/* RIGHT PANEL */
+/* ===== PANEL TURFURI ===== */
 .turfPanel{
     position:absolute;
     top:70px;
@@ -279,6 +296,21 @@ body{
     background:#22c55e;
     margin-right:8px;
 }
+
+@media(max-width:1000px){
+    .sidebar{
+        width:250px;
+        min-width:250px;
+    }
+
+    .turfPanel{
+        display:none;
+    }
+
+    .legend{
+        width:240px;
+    }
+}
 </style>
 </head>
 
@@ -286,9 +318,10 @@ body{
 
 <div class="app">
 
+    <!-- MENIU STANGA -->
     <aside class="sidebar">
         <div class="logo">
-            <img src="SundayRomania.png" alt="Sunday Romania">
+            <img src="logo.png" alt="Sunday Romania">
             <div class="logoText">
                 <div class="purple">SUNDAY</div>
                 <div>ROMANIA</div>
@@ -296,21 +329,24 @@ body{
         </div>
 
         <div class="menu">
-            <div class="menuTitle">GENERAL</div>
-            <a class="active">Dashboard</a>
-            <a>Regulament</a>
-            <a>Magazin</a>
-            <a>Sugestii</a>
-            <a>Players</a>
-            <a>Staff Members</a>
-            <a>Jucători Banați</a>
-            <a>Hartă</a>
+            <div class="menuTitle">G E N E R A L</div>
 
-            <div class="menuTitle">FACȚIUNI</div>
-            <a>Facțiuni</a>
+            <a href="https://sundayromania.vercel.app/index.html">Dashboard</a>
+            <a href="https://sundayromania.vercel.app/regulament.html">Regulament</a>
+            <a href="https://sundayromania.vercel.app/magazin.html">Magazin</a>
+            <a href="https://sundayromania.vercel.app/sugestii.html">Sugestii</a>
+            <a href="https://sundayromania.vercel.app/players.html">Players</a>
+            <a href="https://sundayromania.vercel.app/staff.html">Staff Members</a>
+            <a href="https://sundayromania.vercel.app/banati.html">Jucători Banați</a>
+            <a href="https://sundayromania.vercel.app/harta.html" class="active">Hartă</a>
+
+            <div class="menuTitle">F A C T I U N I</div>
+
+            <a href="https://sundayromania.vercel.app/factiuni.html">Facțiuni</a>
         </div>
     </aside>
 
+    <!-- CONTINUT HARTA -->
     <main class="content">
 
         <div class="topbar">
@@ -324,7 +360,8 @@ body{
 
         <div id="mapView">
             <div id="mapContent">
-                <img id="mapImage" src="harta.png" alt="Harta">
+                <!-- IMPORTANT: pune harta ta 8192x8192 cu numele harta.png -->
+                <img id="mapImage" src="harta.png" alt="Harta Sunday Romania">
             </div>
         </div>
 
@@ -365,13 +402,26 @@ body{
 /*
 ==================================================
 TURFURI EDITABILE
-Toate sunt puse puțin mai jos.
-Schimbi owner ca să modifici mafia.
-Exemplu:
-owner: "Nortenos"
+
+Toate sunt momentan ocupate de "Sindicat".
+
+Ca să muți un turf:
+- modifici x pentru stânga/dreapta
+- modifici y pentru sus/jos
+
+Ca să modifici mărimea:
+- modifici w pentru lățime
+- modifici h pentru înălțime
+
+Ca să schimbi mafia:
 owner: "Sindicat"
+owner: "Nortenos"
 owner: "Sons of Anarchy"
 owner: "Hitman"
+owner: "Public"
+owner: "Liber"
+
+Coordonatele sunt pentru hartă 8192x8192.
 ==================================================
 */
 
@@ -494,7 +544,7 @@ function loadTurfs(){
             <div class="turfCard">
                 <b><span class="dot" style="background:${color}"></span>${turf.name}</b><br>
                 <small>Deținut de: <span style="color:${color};font-weight:bold">${turf.owner}</span></small><br>
-                <small>X: ${turf.x} | Y: ${turf.y}</small>
+                <small>X: ${turf.x} | Y: ${turf.y} | W: ${turf.w} | H: ${turf.h}</small>
             </div>
         `;
     });
@@ -502,7 +552,7 @@ function loadTurfs(){
 
 loadTurfs();
 
-/* ZOOM + DRAG */
+/* ===== ZOOM + DRAG ===== */
 const mapView = document.getElementById("mapView");
 
 let scale = 0.155;
