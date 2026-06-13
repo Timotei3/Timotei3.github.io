@@ -1,1 +1,267 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facțiuni | Sunday Romania</title>
+  <link rel="stylesheet" href="style.css">
 
+  <style>
+    .factions-hero{
+      background:#141424;
+      border:1px solid #34345b;
+      border-radius:14px;
+      padding:35px;
+      margin-bottom:25px;
+    }
+
+    .factions-hero b{
+      background:#243c9f;
+      color:#8fa8ff;
+      padding:7px 13px;
+      border-radius:6px;
+      font-size:12px;
+      letter-spacing:2px;
+    }
+
+    .factions-hero h1{
+      margin-top:18px;
+      font-size:34px;
+      color:#fff;
+    }
+
+    .factions-hero p{
+      color:#aaaec7;
+      margin-top:8px;
+    }
+
+    .faction-section-title{
+      color:#fff;
+      font-size:26px;
+      margin:25px 0 18px;
+    }
+
+    .faction-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-bottom:30px;
+    }
+
+    .faction-card{
+      background:linear-gradient(135deg,#141720,#101118);
+      border:1px solid #252840;
+      border-radius:16px;
+      padding:24px;
+      min-height:170px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .faction-card h3{
+      color:#fff;
+      font-size:22px;
+      margin-bottom:30px;
+    }
+
+    .faction-icon{
+      position:absolute;
+      top:22px;
+      right:22px;
+      width:44px;
+      height:44px;
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:22px;
+      background:#232638;
+    }
+
+    .members{
+      color:#fff;
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:8px;
+    }
+
+    .bar{
+      width:100%;
+      height:6px;
+      background:#2b2d38;
+      border-radius:10px;
+      overflow:hidden;
+      margin-bottom:22px;
+    }
+
+    .fill{
+      height:100%;
+      border-radius:10px;
+    }
+
+    .faction-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .faction-actions.single{
+      grid-template-columns:1fr;
+    }
+
+    .faction-actions a,
+    .faction-actions button{
+      height:38px;
+      border-radius:7px;
+      border:1px solid #343846;
+      background:#1b1d25;
+      color:#fff;
+      font-size:12px;
+      font-weight:800;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      cursor:pointer;
+    }
+
+    .apply{
+      border-color:#067b54 !important;
+      background:#0d3028 !important;
+      color:#25e39b !important;
+    }
+
+    .closed{
+      opacity:.75;
+      cursor:not-allowed !important;
+    }
+
+    .legal.police .fill{background:#4b7dff;width:33%;}
+    .legal.smurd .fill{background:#ff4545;width:45%;}
+    .legal.mecanic .fill{background:#4ebed0;width:21%;}
+
+    .legal.police .faction-icon{background:#12294f;color:#4b7dff;}
+    .legal.smurd .faction-icon{background:#42151c;color:#ff4545;}
+    .legal.mecanic .faction-icon{background:#112f36;color:#4ebed0;}
+
+    .illegal .fill{background:#6b6b6b;width:0%;}
+    .illegal .faction-icon{background:#2c2f3a;color:#fff;}
+
+    .hitman .fill{background:#7a7158;width:40%;}
+    .hitman .faction-icon{background:#252522;color:#7a7158;}
+
+    @media(max-width:1200px){
+      .faction-grid{grid-template-columns:repeat(2,1fr);}
+    }
+
+    @media(max-width:700px){
+      .faction-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+
+<body>
+  <aside>
+    <div class="brand">
+      <img src="SundayRomania.png" class="brand-logo" alt="Sunday Romania">
+      <div class="brand-text">
+        <span>SUNDAY</span>
+        <strong>ROMANIA</strong>
+      </div>
+    </div>
+
+    <p>GENERAL</p>
+    <a href="index.html">Dashboard</a>
+    <a href="regulament.html">Regulament</a>
+    <a href="magazin.html">Magazin</a>
+    <a href="sugestii.html">Sugestii</a>
+    <a href="players.html">Players</a>
+    <a href="staff.html">Staff Members</a>
+    <a href="banati.html">Jucători Banați</a>
+    <a href="harta.html">Hartă</a>
+
+    <p>FACȚIUNI</p>
+    <a href="factiuni.html" class="active">Facțiuni</a>
+  </aside>
+
+  <main>
+    <section class="factions-hero">
+      <b>SUNDAY ROMANIA</b>
+      <h1>Facțiuni</h1>
+      <p>Aici poți vedea facțiunile legale și ilegale disponibile pe server.</p>
+    </section>
+
+    <h2 class="faction-section-title">Facțiuni Legale</h2>
+
+    <section class="faction-grid">
+      <div class="faction-card legal police">
+        <h3>Poliția</h3>
+        <div class="faction-icon">🛡️</div>
+        <p class="members">50 / 150 Membri</p>
+        <div class="bar"><div class="fill"></div></div>
+        <div class="faction-actions single">
+          <a href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a>
+        </div>
+      </div>
+
+      <div class="faction-card legal smurd">
+        <h3>Smurd</h3>
+        <div class="faction-icon">🚑</div>
+        <p class="members">45 / 100 Membri</p>
+        <div class="bar"><div class="fill"></div></div>
+        <div class="faction-actions single">
+          <a href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a>
+        </div>
+      </div>
+
+      <div class="faction-card legal mecanic">
+        <h3>Mecanic</h3>
+        <div class="faction-icon">🔧</div>
+        <p class="members">21 / 100 Membri</p>
+        <div class="bar"><div class="fill"></div></div>
+        <div class="faction-actions single">
+          <a href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a>
+        </div>
+      </div>
+    </section>
+
+    <h2 class="faction-section-title">Facțiuni Ilegale</h2>
+
+    <section class="faction-grid">
+      <div class="faction-card hitman">
+        <h3>Hitman</h3>
+        <div class="faction-icon">♟️</div>
+        <p class="members">10 / 25 Membri</p>
+        <div class="bar"><div class="fill"></div></div>
+        <div class="faction-actions">
+          <a href="#">☠ MEMBRI</a>
+          <button class="closed">🔒 ÎNCHIS</button>
+        </div>
+      </div>
+
+      <div class="faction-card illegal"><h3>Sindicat</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Nortenos</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Sons of Anarchy</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Hood Hustlers</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Bloods</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Los Vagos</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Cosa Nostra</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Surenos-13</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Ballas</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Cali Cartel</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Mafia Rusa</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Corleone Sportivii</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Spoitorii</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Ndrangheta</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Mafia Siciliana</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Legion</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Cartel de Medellin</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Marabunta Grande</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Triads</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>Zetas Cartel</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>MS-13</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+      <div class="faction-card illegal"><h3>La Familia Michoacana</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
+    </section>
+  </main>
+</body>
+</html>
