@@ -18,12 +18,16 @@
     .faction-icon{position:absolute;top:22px;right:22px;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;background:#232638}
     .members{color:#fff;font-size:13px;font-weight:700;margin-bottom:8px}
     .bar{width:100%;height:6px;background:#2b2d38;border-radius:10px;overflow:hidden;margin-bottom:22px}
-    .fill{height:100%;border-radius:10px}
+    .fill{height:100%;border-radius:10px;width:0%;transition:.4s ease}
     .faction-actions{display:grid;grid-template-columns:1fr;gap:10px}
     .faction-actions button{height:38px;border-radius:7px;border:1px solid #067b54;background:#0d3028;color:#25e39b;font-size:12px;font-weight:800;cursor:pointer}
     .faction-actions button:hover{filter:brightness(1.15)}
-    .police .fill{background:#4b7dff;width:33%}.smurd .fill{background:#ff4545;width:45%}.mecanic .fill{background:#4ebed0;width:21%}
-    .illegal .fill{background:#6b6b6b;width:0%}.hitman .fill{background:#7a7158;width:40%}
+
+    .police .fill{background:#4b7dff}
+    .smurd .fill{background:#ff4545}
+    .mecanic .fill{background:#4ebed0}
+    .illegal .fill{background:#6b6b6b}
+    .hitman .fill{background:#7a7158}
 
     .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:9999}
     .apply-modal{width:540px;max-width:92%;background:#151522;border:1px solid #5b4cb6;border-radius:16px;padding:26px;box-shadow:0 0 35px rgba(177,76,255,.25);position:relative}
@@ -124,47 +128,56 @@ const webhooks = {
 };
 
 const legalFactions = [
-  {name:"Poliția", members:"10 / 150 Membri", icon:"🛡️", cls:"police"},
-  {name:"Smurd", members:"2 / 100 Membri", icon:"🚑", cls:"smurd"},
-  {name:"Mecanic", members:"0 / 100 Membri", icon:"🔧", cls:"mecanic"}
+  {name:"Poliția", members:50, max:150, icon:"🛡️", cls:"police"},
+  {name:"Smurd", members:45, max:100, icon:"🚑", cls:"smurd"},
+  {name:"Mecanic", members:21, max:100, icon:"🔧", cls:"mecanic"}
 ];
 
 const illegalFactions = [
-  {name:"Hitman", members:"0 / 25 Membri", icon:"♟️", cls:"hitman"},
-  {name:"Sindicat", members:"3 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Nortenos", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Sons of Anarchy", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Hood Hustlers", members:"7 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Bloods", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Los Vagos", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Cosa Nostra", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Surenos-13", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Ballas", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Cali Cartel", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Mafia Rusa", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Corleone Sportivii", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Spoitorii", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Ndrangheta", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Mafia Siciliana", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Legion", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Cartel de Medellin", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Marabunta Grande", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Triads", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"Zetas Cartel", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"MS-13", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
-  {name:"La Familia Michoacana", members:"0 / 10 Membri", icon:"☠", cls:"illegal"}
+  {name:"Hitman", members:10, max:25, icon:"♟️", cls:"hitman"},
+  {name:"Sindicat", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Nortenos", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Sons of Anarchy", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Hood Hustlers", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Bloods", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Los Vagos", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Cosa Nostra", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Surenos-13", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Ballas", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Cali Cartel", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Mafia Rusa", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Corleone Sportivii", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Spoitorii", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Ndrangheta", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Mafia Siciliana", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Legion", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Cartel de Medellin", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Marabunta Grande", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Triads", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"Zetas Cartel", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"MS-13", members:0, max:10, icon:"☠", cls:"illegal"},
+  {name:"La Familia Michoacana", members:0, max:10, icon:"☠", cls:"illegal"}
 ];
 
 let currentFaction = "";
 
+function percent(members, max){
+  if(!max || max <= 0) return 0;
+  return Math.min(100, Math.max(0, (members / max) * 100));
+}
+
 function createFactionCard(faction){
   const safeName = faction.name.replaceAll("'", "\\'");
+  const width = percent(faction.members, faction.max);
+
   return `
     <div class="faction-card ${faction.cls}">
       <h3>${faction.name}</h3>
       <div class="faction-icon">${faction.icon}</div>
-      <p class="members">${faction.members}</p>
-      <div class="bar"><div class="fill"></div></div>
+      <p class="members">${faction.members} / ${faction.max} Membri</p>
+      <div class="bar">
+        <div class="fill" style="width:${width}%"></div>
+      </div>
       <div class="faction-actions">
         <button onclick="openApply('${safeName}')">✈ APLICĂ</button>
       </div>
