@@ -7,156 +7,37 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    .factions-hero{
-      background:#141424;
-      border:1px solid #34345b;
-      border-radius:14px;
-      padding:35px;
-      margin-bottom:25px;
-    }
+    .factions-hero{background:#141424;border:1px solid #34345b;border-radius:14px;padding:35px;margin-bottom:25px}
+    .factions-hero b{background:#243c9f;color:#8fa8ff;padding:7px 13px;border-radius:6px;font-size:12px;letter-spacing:2px}
+    .factions-hero h1{margin-top:18px;font-size:34px;color:#fff}
+    .factions-hero p{color:#aaaec7;margin-top:8px}
+    .faction-section-title{color:#fff;font-size:26px;margin:25px 0 18px}
+    .faction-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:30px}
+    .faction-card{background:linear-gradient(135deg,#141720,#101118);border:1px solid #252840;border-radius:16px;padding:24px;min-height:170px;position:relative}
+    .faction-card h3{color:#fff;font-size:22px;margin-bottom:30px}
+    .faction-icon{position:absolute;top:22px;right:22px;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;background:#232638}
+    .members{color:#fff;font-size:13px;font-weight:700;margin-bottom:8px}
+    .bar{width:100%;height:6px;background:#2b2d38;border-radius:10px;overflow:hidden;margin-bottom:22px}
+    .fill{height:100%;border-radius:10px}
+    .faction-actions{display:grid;grid-template-columns:1fr;gap:10px}
+    .faction-actions button{height:38px;border-radius:7px;border:1px solid #067b54;background:#0d3028;color:#25e39b;font-size:12px;font-weight:800;cursor:pointer}
+    .faction-actions button:hover{filter:brightness(1.15)}
+    .police .fill{background:#4b7dff;width:33%}.smurd .fill{background:#ff4545;width:45%}.mecanic .fill{background:#4ebed0;width:21%}
+    .illegal .fill{background:#6b6b6b;width:0%}.hitman .fill{background:#7a7158;width:40%}
 
-    .factions-hero b{
-      background:#243c9f;
-      color:#8fa8ff;
-      padding:7px 13px;
-      border-radius:6px;
-      font-size:12px;
-      letter-spacing:2px;
-    }
+    .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:9999}
+    .apply-modal{width:540px;max-width:92%;background:#151522;border:1px solid #5b4cb6;border-radius:16px;padding:26px;box-shadow:0 0 35px rgba(177,76,255,.25);position:relative}
+    .apply-modal h2{color:white;font-size:26px;margin-bottom:10px}
+    .apply-modal p{color:#d8d8f0;margin-bottom:14px}
+    .apply-modal input,.apply-modal textarea{width:100%;background:#20222b;color:white;border:1px solid #4c4680;border-radius:10px;padding:13px;margin-bottom:12px;outline:none}
+    .apply-modal textarea{min-height:90px;resize:vertical}
+    .apply-modal input:focus,.apply-modal textarea:focus{border-color:#b14cff;box-shadow:0 0 12px rgba(177,76,255,.25)}
+    .close-modal{position:absolute;right:16px;top:14px;background:#2a2a3a;color:#fff;border:none;padding:6px 12px;border-radius:8px;cursor:pointer}
+    .send-application{width:100%;margin-top:8px;background:#8b5cf6;color:#fff;border:none;padding:14px;border-radius:10px;font-weight:800;cursor:pointer}
+    #applyStatus{margin-top:14px;color:#d28cff;font-weight:700}
 
-    .factions-hero h1{
-      margin-top:18px;
-      font-size:34px;
-      color:#fff;
-    }
-
-    .factions-hero p{
-      color:#aaaec7;
-      margin-top:8px;
-    }
-
-    .faction-section-title{
-      color:#fff;
-      font-size:26px;
-      margin:25px 0 18px;
-    }
-
-    .faction-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
-      margin-bottom:30px;
-    }
-
-    .faction-card{
-      background:linear-gradient(135deg,#141720,#101118);
-      border:1px solid #252840;
-      border-radius:16px;
-      padding:24px;
-      min-height:170px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .faction-card h3{
-      color:#fff;
-      font-size:22px;
-      margin-bottom:30px;
-    }
-
-    .faction-icon{
-      position:absolute;
-      top:22px;
-      right:22px;
-      width:44px;
-      height:44px;
-      border-radius:10px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:22px;
-      background:#232638;
-    }
-
-    .members{
-      color:#fff;
-      font-size:13px;
-      font-weight:700;
-      margin-bottom:8px;
-    }
-
-    .bar{
-      width:100%;
-      height:6px;
-      background:#2b2d38;
-      border-radius:10px;
-      overflow:hidden;
-      margin-bottom:22px;
-    }
-
-    .fill{
-      height:100%;
-      border-radius:10px;
-    }
-
-    .faction-actions{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-    }
-
-    .faction-actions.single{
-      grid-template-columns:1fr;
-    }
-
-    .faction-actions a,
-    .faction-actions button{
-      height:38px;
-      border-radius:7px;
-      border:1px solid #343846;
-      background:#1b1d25;
-      color:#fff;
-      font-size:12px;
-      font-weight:800;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-decoration:none;
-      cursor:pointer;
-    }
-
-    .apply{
-      border-color:#067b54 !important;
-      background:#0d3028 !important;
-      color:#25e39b !important;
-    }
-
-    .closed{
-      opacity:.75;
-      cursor:not-allowed !important;
-    }
-
-    .legal.police .fill{background:#4b7dff;width:33%;}
-    .legal.smurd .fill{background:#ff4545;width:45%;}
-    .legal.mecanic .fill{background:#4ebed0;width:21%;}
-
-    .legal.police .faction-icon{background:#12294f;color:#4b7dff;}
-    .legal.smurd .faction-icon{background:#42151c;color:#ff4545;}
-    .legal.mecanic .faction-icon{background:#112f36;color:#4ebed0;}
-
-    .illegal .fill{background:#6b6b6b;width:0%;}
-    .illegal .faction-icon{background:#2c2f3a;color:#fff;}
-
-    .hitman .fill{background:#7a7158;width:40%;}
-    .hitman .faction-icon{background:#252522;color:#7a7158;}
-
-    @media(max-width:1200px){
-      .faction-grid{grid-template-columns:repeat(2,1fr);}
-    }
-
-    @media(max-width:700px){
-      .faction-grid{grid-template-columns:1fr;}
-    }
+    @media(max-width:1200px){.faction-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:700px){.faction-grid{grid-template-columns:1fr}}
   </style>
 </head>
 
@@ -164,10 +45,7 @@
   <aside>
     <div class="brand">
       <img src="SundayRomania.png" class="brand-logo" alt="Sunday Romania">
-      <div class="brand-text">
-        <span>SUNDAY</span>
-        <strong>ROMANIA</strong>
-      </div>
+      <div class="brand-text"><span>SUNDAY</span><strong>ROMANIA</strong></div>
     </div>
 
     <p>GENERAL</p>
@@ -192,76 +70,180 @@
     </section>
 
     <h2 class="faction-section-title">Facțiuni Legale</h2>
-
-    <section class="faction-grid">
-      <div class="faction-card legal police">
-        <h3>Poliția</h3>
-        <div class="faction-icon">🛡️</div>
-        <p class="members">50 / 150 Membri</p>
-        <div class="bar"><div class="fill"></div></div>
-        <div class="faction-actions single">
-          <a href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a>
-        </div>
-      </div>
-
-      <div class="faction-card legal smurd">
-        <h3>Smurd</h3>
-        <div class="faction-icon">🚑</div>
-        <p class="members">45 / 100 Membri</p>
-        <div class="bar"><div class="fill"></div></div>
-        <div class="faction-actions single">
-          <a href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a>
-        </div>
-      </div>
-
-      <div class="faction-card legal mecanic">
-        <h3>Mecanic</h3>
-        <div class="faction-icon">🔧</div>
-        <p class="members">21 / 100 Membri</p>
-        <div class="bar"><div class="fill"></div></div>
-        <div class="faction-actions single">
-          <a href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a>
-        </div>
-      </div>
-    </section>
+    <section id="legalGrid" class="faction-grid"></section>
 
     <h2 class="faction-section-title">Facțiuni Ilegale</h2>
-
-    <section class="faction-grid">
-      <div class="faction-card hitman">
-        <h3>Hitman</h3>
-        <div class="faction-icon">♟️</div>
-        <p class="members">10 / 25 Membri</p>
-        <div class="bar"><div class="fill"></div></div>
-        <div class="faction-actions">
-          <a href="#">☠ MEMBRI</a>
-          <button class="closed">🔒 ÎNCHIS</button>
-        </div>
-      </div>
-
-      <div class="faction-card illegal"><h3>Sindicat</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Nortenos</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Sons of Anarchy</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Hood Hustlers</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Bloods</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Los Vagos</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Cosa Nostra</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Surenos-13</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Ballas</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Cali Cartel</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Mafia Rusa</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Corleone Sportivii</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Spoitorii</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Ndrangheta</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Mafia Siciliana</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Legion</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Cartel de Medellin</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Marabunta Grande</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Triads</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>Zetas Cartel</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>MS-13</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-      <div class="faction-card illegal"><h3>La Familia Michoacana</h3><div class="faction-icon">☠</div><p class="members">0 / 10 Membri</p><div class="bar"><div class="fill"></div></div><div class="faction-actions single"><a class="apply" href="https://discord.gg/Z9EnZnHhjQ" target="_blank">✈ APLICĂ</a></div></div>
-    </section>
+    <section id="illegalGrid" class="faction-grid"></section>
   </main>
+
+  <div id="applyModal" class="modal-bg">
+    <div class="apply-modal">
+      <button class="close-modal" onclick="closeApply()">×</button>
+      <h2>Aplică pentru facțiune</h2>
+      <p id="selectedFaction">Facțiune: -</p>
+
+      <input id="appName" placeholder="Numele tău IC">
+      <input id="appDiscord" placeholder="Nume Discord / Discord ID">
+      <input id="appAge" placeholder="Vârsta ta">
+      <textarea id="appReason" placeholder="De ce vrei să intri în această facțiune?"></textarea>
+      <textarea id="appExperience" placeholder="Ai experiență RP? Explică pe scurt."></textarea>
+
+      <button class="send-application" onclick="sendApplication()">Trimite aplicația</button>
+      <p id="applyStatus"></p>
+    </div>
+  </div>
+
+<script>
+const webhooks = {
+  "Poliția": "PUNE_WEBHOOK_POLITIA_AICI",
+  "Smurd": "PUNE_WEBHOOK_SMURD_AICI",
+  "Mecanic": "PUNE_WEBHOOK_MECANIC_AICI",
+  "Hitman": "PUNE_WEBHOOK_HITMAN_AICI",
+  "Sindicat": "PUNE_WEBHOOK_SINDICAT_AICI",
+  "Nortenos": "PUNE_WEBHOOK_NORTENOS_AICI",
+  "Sons of Anarchy": "PUNE_WEBHOOK_SOA_AICI",
+  "Hood Hustlers": "PUNE_WEBHOOK_HOOD_HUSTLERS_AICI",
+  "Bloods": "PUNE_WEBHOOK_BLOODS_AICI",
+  "Los Vagos": "PUNE_WEBHOOK_LOS_VAGOS_AICI",
+  "Cosa Nostra": "PUNE_WEBHOOK_COSA_NOSTRA_AICI",
+  "Surenos-13": "PUNE_WEBHOOK_SURENOS13_AICI",
+  "Ballas": "PUNE_WEBHOOK_BALLAS_AICI",
+  "Cali Cartel": "PUNE_WEBHOOK_CALI_CARTEL_AICI",
+  "Mafia Rusa": "PUNE_WEBHOOK_MAFIA_RUSA_AICI",
+  "Corleone Sportivii": "PUNE_WEBHOOK_CORLEONE_AICI",
+  "Spoitorii": "PUNE_WEBHOOK_SPOITORII_AICI",
+  "Ndrangheta": "PUNE_WEBHOOK_NDRANGHETA_AICI",
+  "Mafia Siciliana": "PUNE_WEBHOOK_MAFIA_SICILIANA_AICI",
+  "Legion": "PUNE_WEBHOOK_LEGION_AICI",
+  "Cartel de Medellin": "PUNE_WEBHOOK_MEDELLIN_AICI",
+  "Marabunta Grande": "PUNE_WEBHOOK_MARABUNTA_AICI",
+  "Triads": "PUNE_WEBHOOK_TRIADS_AICI",
+  "Zetas Cartel": "PUNE_WEBHOOK_ZETAS_AICI",
+  "MS-13": "PUNE_WEBHOOK_MS13_AICI",
+  "La Familia Michoacana": "PUNE_WEBHOOK_LA_FAMILIA_AICI"
+};
+
+const legalFactions = [
+  {name:"Poliția", members:"50 / 150 Membri", icon:"🛡️", cls:"police"},
+  {name:"Smurd", members:"45 / 100 Membri", icon:"🚑", cls:"smurd"},
+  {name:"Mecanic", members:"21 / 100 Membri", icon:"🔧", cls:"mecanic"}
+];
+
+const illegalFactions = [
+  {name:"Hitman", members:"10 / 25 Membri", icon:"♟️", cls:"hitman"},
+  {name:"Sindicat", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Nortenos", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Sons of Anarchy", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Hood Hustlers", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Bloods", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Los Vagos", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Cosa Nostra", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Surenos-13", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Ballas", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Cali Cartel", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Mafia Rusa", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Corleone Sportivii", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Spoitorii", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Ndrangheta", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Mafia Siciliana", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Legion", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Cartel de Medellin", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Marabunta Grande", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Triads", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"Zetas Cartel", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"MS-13", members:"0 / 10 Membri", icon:"☠", cls:"illegal"},
+  {name:"La Familia Michoacana", members:"0 / 10 Membri", icon:"☠", cls:"illegal"}
+];
+
+let currentFaction = "";
+
+function createFactionCard(faction){
+  const safeName = faction.name.replaceAll("'", "\\'");
+  return `
+    <div class="faction-card ${faction.cls}">
+      <h3>${faction.name}</h3>
+      <div class="faction-icon">${faction.icon}</div>
+      <p class="members">${faction.members}</p>
+      <div class="bar"><div class="fill"></div></div>
+      <div class="faction-actions">
+        <button onclick="openApply('${safeName}')">✈ APLICĂ</button>
+      </div>
+    </div>
+  `;
+}
+
+document.getElementById("legalGrid").innerHTML = legalFactions.map(createFactionCard).join("");
+document.getElementById("illegalGrid").innerHTML = illegalFactions.map(createFactionCard).join("");
+
+function openApply(faction){
+  currentFaction = faction;
+  document.getElementById("selectedFaction").innerText = "Facțiune: " + faction;
+  document.getElementById("applyModal").style.display = "flex";
+  document.getElementById("applyStatus").innerText = "";
+}
+
+function closeApply(){
+  document.getElementById("applyModal").style.display = "none";
+}
+
+async function sendApplication(){
+  const webhook = webhooks[currentFaction];
+  const status = document.getElementById("applyStatus");
+
+  const name = document.getElementById("appName").value.trim();
+  const discord = document.getElementById("appDiscord").value.trim();
+  const age = document.getElementById("appAge").value.trim();
+  const reason = document.getElementById("appReason").value.trim();
+  const experience = document.getElementById("appExperience").value.trim();
+
+  if(!webhook || webhook.includes("PUNE_WEBHOOK")){
+    status.innerText = "Webhook-ul pentru această facțiune nu este setat.";
+    return;
+  }
+
+  if(!name || !discord || !age || !reason || !experience){
+    status.innerText = "Completează toate câmpurile.";
+    return;
+  }
+
+  status.innerText = "Se trimite aplicația...";
+
+  try{
+    const response = await fetch(webhook,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        username:"Aplicații Facțiuni",
+        embeds:[{
+          title:"📩 Aplicație nouă - " + currentFaction,
+          color:10181046,
+          fields:[
+            {name:"Facțiune", value:currentFaction, inline:true},
+            {name:"Nume IC", value:name, inline:true},
+            {name:"Discord", value:discord, inline:true},
+            {name:"Vârstă", value:age, inline:true},
+            {name:"Motiv", value:reason},
+            {name:"Experiență RP", value:experience}
+          ],
+          footer:{text:"Sunday Romania Roleplay"}
+        }]
+      })
+    });
+
+    if(!response.ok) throw new Error("Webhook error");
+
+    status.innerText = "Aplicația a fost trimisă!";
+    document.getElementById("appName").value = "";
+    document.getElementById("appDiscord").value = "";
+    document.getElementById("appAge").value = "";
+    document.getElementById("appReason").value = "";
+    document.getElementById("appExperience").value = "";
+
+    setTimeout(closeApply, 1500);
+  }catch(error){
+    status.innerText = "Eroare la trimitere. Verifică webhook-ul.";
+  }
+}
+</script>
 </body>
 </html>
